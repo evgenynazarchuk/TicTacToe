@@ -35,19 +35,31 @@ namespace TicTacToe.Tests
         [MemberData(nameof(PositiveData))]
         public void FindMatchesPositiveTest(char userSymbol, char[,] gameField)
         {
+            // Arange
             var game = new TicTacToe.BLL.TicTacToe();
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);
-            game.FindMatches().Should().BeTrue();
+
+            // Act
+            var result = game.FindMatches();
+
+            // Assert
+            result.Should().BeTrue();
         }
         [Theory]
         [MemberData(nameof(NegativeData))]
         public void FindMatchesNegativeTest(char userSymbol, char[,] gameField)
         {
+            // Arange
             var game = new TicTacToe.BLL.TicTacToe();
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);
-            game.FindMatches().Should().BeFalse();
+
+            // Act
+            var result = game.FindMatches();
+
+            // Assert
+            result.Should().BeFalse();
         }
     }
 }

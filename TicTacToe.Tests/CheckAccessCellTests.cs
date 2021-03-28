@@ -26,20 +26,32 @@ namespace TicTacToe.Tests
         [MemberData(nameof(PositiveData))]
         public void CheckAccessCellPositiveTest(int number, char[,] gameField)
         {
+            // Arange
             var game = new TicTacToe.BLL.TicTacToe();
             game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
-            game.CheckAccessCellByPosition(cellPosition).Should().BeTrue();
+
+            // Act
+            var result = game.CheckAccessCellByPosition(cellPosition);
+
+            // Assert
+            result.Should().BeTrue();
         }
 
         [Theory]
         [MemberData(nameof(NegativeData))]
         public void CheckAccessCellNegativeTest(int number, char[,] gameField)
         {
+            // Arange
             var game = new TicTacToe.BLL.TicTacToe();
             game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
-            game.CheckAccessCellByPosition(cellPosition).Should().BeFalse();
+
+            // Act
+            var result = game.CheckAccessCellByPosition(cellPosition);
+
+            // Assert
+            result.Should().BeFalse();
         }
     }
 }
