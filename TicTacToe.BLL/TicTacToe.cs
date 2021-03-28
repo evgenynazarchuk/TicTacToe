@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TicTacToe.BLL
 {
-    public class TicTocToe
+    public class TicTacToe
     {
         public GameStatus GameStatus { get; private set; } = GameStatus.Play;
         public char[,] GameField { get; set; } = new char[3, 3];
@@ -12,7 +12,7 @@ namespace TicTacToe.BLL
         public int CurrentPlayer { get; private set; } = 1;
         public char UserSymbol { get; private set; } = 'X';
 
-        public TicTocToe()
+        public TicTacToe()
         {
         }
 

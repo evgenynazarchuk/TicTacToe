@@ -7,7 +7,7 @@ namespace TicTacToe.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var game = new TicTocToe();
+            var game = new BLL.TicTacToe();
             int userInputCellNumber;
 
             while (game.GameStatus != GameStatus.GameOver)
