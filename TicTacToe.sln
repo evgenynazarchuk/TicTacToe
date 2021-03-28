@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.ConsoleApp", "Tic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.BLL", "TicTacToe.BLL\TicTacToe.BLL.csproj", "{C8D919A3-294B-45DF-A30F-91225D356C7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Tests", "TicTacToe.Tests\TicTacToe.Tests.csproj", "{EE299F5B-15A9-45B2-A561-26C41CFE0ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.BLL.Tests", "TicTacToe.BLL.Tests\TicTacToe.BLL.Tests.csproj", "{EE299F5B-15A9-45B2-A561-26C41CFE0ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
