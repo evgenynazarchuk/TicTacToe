@@ -115,6 +115,16 @@ namespace TicTacToe.BLL
             this.UserSymbol = this.CurrentPlayer == 1 ? 'X' : 'O';
         }
 
+        public void SetUserSymbol(char symbol)
+        {
+            this.UserSymbol = symbol;
+        }
+
+        public void SetGameField(char[,] gameField)
+        {
+            this.GameField = gameField;
+        }
+
         public void PrintGameField()
         {
             int cellNumber = 1;
