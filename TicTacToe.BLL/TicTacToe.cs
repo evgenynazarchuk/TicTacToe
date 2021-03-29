@@ -1,63 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TicTacToe.BLL.Interfaces;
 
 namespace TicTacToe.BLL
 {
     public class TicTacToe
     {
-        public GameStatus GameStatus { get; private set; } = GameStatus.Play;
-        public char[,] GameField { get; set; } = new char[3, 3];
+        private readonly IRepository _repository;
 
-        public int CurrentPlayer { get; private set; } = 1;
-        public char UserSymbol { get; private set; } = 'X';
-
-        public TicTacToe()
+        public TicTacToe(IRepository repository)
         {
+            this._repository = repository;
+        }
+
+        public void InitMemory(
+            char[,] gameField
+            , GameStatus gameStatus = GameStatus.Play
+            , int currentPlayer = 1
+            , char userSymbol = 'X'
+            )
+        {
+            this._repository.GameField = gameField;
+            this._repository.GameStatus = gameStatus;
+            this._repository.CurrentPlayer = currentPlayer;
+            this._repository.UserSymbol = userSymbol;
         }
 
         public bool FindMatches()
         {
             bool gameOver = false;
 
-            if (this.GameField[0, 0] == this.UserSymbol && this.GameField[0, 1] == this.UserSymbol && this.GameField[0, 2] == this.UserSymbol)
+            if (this._repository.GameField[0, 0] == this._repository.UserSymbol && this._repository.GameField[0, 1] == this._repository.UserSymbol && this._repository.GameField[0, 2] == this._repository.UserSymbol)
             {
                 gameOver = true;
             }
-            else if (this.GameField[1, 0] == this.UserSymbol && this.GameField[1, 1] == this.UserSymbol && this.GameField[1, 2] == this.UserSymbol)
+            else if (this._repository.GameField[1, 0] == this._repository.UserSymbol && this._repository.GameField[1, 1] == this._repository.UserSymbol && this._repository.GameField[1, 2] == this._repository.UserSymbol)
             {
                 gameOver = true;
             }
-            else if (this.GameField[2, 0] == this.UserSymbol && this.GameField[2, 1] == this.UserSymbol && this.GameField[2, 2] == this.UserSymbol)
-            {
-                gameOver = true;
-            }
-
-            else if (this.GameField[0, 0] == this.UserSymbol && this.GameField[1, 0] == this.UserSymbol && this.GameField[2, 0] == this.UserSymbol)
-            {
-                gameOver = true;
-            }
-            else if (this.GameField[0, 1] == this.UserSymbol && this.GameField[1, 1] == this.UserSymbol && this.GameField[2, 1] == this.UserSymbol)
-            {
-                gameOver = true;
-            }
-            else if (this.GameField[0, 2] == this.UserSymbol && this.GameField[1, 2] == this.UserSymbol && this.GameField[2, 2] == this.UserSymbol)
+            else if (this._repository.GameField[2, 0] == this._repository.UserSymbol && this._repository.GameField[2, 1] == this._repository.UserSymbol && this._repository.GameField[2, 2] == this._repository.UserSymbol)
             {
                 gameOver = true;
             }
 
-            else if (this.GameField[0, 0] == this.UserSymbol && this.GameField[1, 1] == this.UserSymbol && this.GameField[2, 2] == this.UserSymbol)
+            else if (this._repository.GameField[0, 0] == this._repository.UserSymbol && this._repository.GameField[1, 0] == this._repository.UserSymbol && this._repository.GameField[2, 0] == this._repository.UserSymbol)
             {
                 gameOver = true;
             }
-            else if (this.GameField[0, 2] == this.UserSymbol && this.GameField[1, 1] == this.UserSymbol && this.GameField[2, 0] == this.UserSymbol)
+            else if (this._repository.GameField[0, 1] == this._repository.UserSymbol && this._repository.GameField[1, 1] == this._repository.UserSymbol && this._repository.GameField[2, 1] == this._repository.UserSymbol)
+            {
+                gameOver = true;
+            }
+            else if (this._repository.GameField[0, 2] == this._repository.UserSymbol && this._repository.GameField[1, 2] == this._repository.UserSymbol && this._repository.GameField[2, 2] == this._repository.UserSymbol)
+            {
+                gameOver = true;
+            }
+
+            else if (this._repository.GameField[0, 0] == this._repository.UserSymbol && this._repository.GameField[1, 1] == this._repository.UserSymbol && this._repository.GameField[2, 2] == this._repository.UserSymbol)
+            {
+                gameOver = true;
+            }
+            else if (this._repository.GameField[0, 2] == this._repository.UserSymbol && this._repository.GameField[1, 1] == this._repository.UserSymbol && this._repository.GameField[2, 0] == this._repository.UserSymbol)
             {
                 gameOver = true;
             }
 
             if (gameOver)
             {
-                this.GameStatus = GameStatus.GameOver;
+                this._repository.GameStatus = GameStatus.GameOver;
                 return true;
             }
             else
@@ -77,7 +88,7 @@ namespace TicTacToe.BLL
 
         public char GetCellValueByPosition(CellPosition cellPosition)
         {
-            return this.GameField[cellPosition.i, cellPosition.j];
+            return this._repository.GameField[cellPosition.i, cellPosition.j];
         }
 
         public CellPosition FindCellPositionByNumber(int number)
@@ -106,23 +117,23 @@ namespace TicTacToe.BLL
 
         public void SetCellSymbol(CellPosition cellPosition)
         {
-            this.GameField[cellPosition.i, cellPosition.j] = this.UserSymbol;
+            this._repository.GameField[cellPosition.i, cellPosition.j] = this._repository.UserSymbol;
         }
 
         public void ChangePlayer()
         {
-            this.CurrentPlayer = this.CurrentPlayer == 1 ? 2 : 1;
-            this.UserSymbol = this.CurrentPlayer == 1 ? 'X' : 'O';
+            this._repository.CurrentPlayer = this._repository.CurrentPlayer == 1 ? 2 : 1;
+            this._repository.UserSymbol = this._repository.CurrentPlayer == 1 ? 'X' : 'O';
         }
 
         public void SetUserSymbol(char symbol)
         {
-            this.UserSymbol = symbol;
+            this._repository.UserSymbol = symbol;
         }
 
         public void SetGameField(char[,] gameField)
         {
-            this.GameField = gameField;
+            this._repository.GameField = gameField;
         }
 
         public void PrintGameField()
@@ -132,13 +143,13 @@ namespace TicTacToe.BLL
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (this.GameField[i, j] == 0)
+                    if (this._repository.GameField[i, j] == 0)
                     {
                         Console.Write(cellNumber);
                     }
                     else
                     {
-                        Console.Write(this.GameField[i, j]);
+                        Console.Write(this._repository.GameField[i, j]);
                     }
                     Console.Write(" ");
                     cellNumber++;
@@ -149,7 +160,10 @@ namespace TicTacToe.BLL
 
         public void PrintWinner()
         {
-            Console.Write($"Congratulations winner player {this.CurrentPlayer}");
+            Console.Write($"Congratulations winner player {this._repository.CurrentPlayer}");
         }
+
+        public GameStatus GetGameStatus() => this._repository.GameStatus;
+        public int GetCurrentPlayer() => this._repository.CurrentPlayer;
     }
 }
