@@ -27,8 +27,10 @@ namespace TicTacToe.Tests
         public void CheckAccessCellPositiveTest(int number, char[,] gameField)
         {
             // Arange
-            var game = new TicTacToe.BLL.TicTacToe();
-            game.SetGameField(gameField);
+            var memory = new MemoryRepository();
+            var game = new TicTacToe.BLL.TicTacToe(memory);
+            game.InitMemory(gameField: gameField);
+            //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
 
             // Act
@@ -43,8 +45,10 @@ namespace TicTacToe.Tests
         public void CheckAccessCellNegativeTest(int number, char[,] gameField)
         {
             // Arange
-            var game = new TicTacToe.BLL.TicTacToe();
-            game.SetGameField(gameField);
+            var memory = new MemoryRepository();
+            var game = new TicTacToe.BLL.TicTacToe(memory);
+            game.InitMemory(gameField: gameField);
+            //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
 
             // Act

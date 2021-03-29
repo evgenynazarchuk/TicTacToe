@@ -36,7 +36,9 @@ namespace TicTacToe.Tests
         public void FindMatchesPositiveTest(char userSymbol, char[,] gameField)
         {
             // Arange
-            var game = new TicTacToe.BLL.TicTacToe();
+            var memory = new MemoryRepository();
+            var game = new TicTacToe.BLL.TicTacToe(memory);
+            game.InitMemory(gameField: gameField);
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);
 
@@ -51,7 +53,9 @@ namespace TicTacToe.Tests
         public void FindMatchesNegativeTest(char userSymbol, char[,] gameField)
         {
             // Arange
-            var game = new TicTacToe.BLL.TicTacToe();
+            var memory = new MemoryRepository();
+            var game = new TicTacToe.BLL.TicTacToe(memory);
+            game.InitMemory(gameField: gameField);
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);
 

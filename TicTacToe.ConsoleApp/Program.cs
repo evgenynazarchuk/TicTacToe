@@ -7,15 +7,17 @@ namespace TicTacToe.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var game = new BLL.TicTacToe();
+            var memory = new MemoryRepository();
+            var game = new BLL.TicTacToe(memory);
+            game.InitMemory(new char[3, 3], GameStatus.Play, 1, 'X');
             int userInputCellNumber;
 
-            while (game.GameStatus != GameStatus.GameOver)
+            while (game.GetGameStatus() != GameStatus.GameOver)
             {
                 Console.Clear();
                 game.PrintGameField();
 
-                Console.Write(game.CurrentPlayer == 1 ? "Gamer X, " : "Gamer O, ");
+                Console.Write(game.GetCurrentPlayer() == 1 ? "Gamer X, " : "Gamer O, ");
                 Console.Write("enter field number: ");
                 try
                 {
@@ -40,7 +42,7 @@ namespace TicTacToe.ConsoleApp
                 {
                     Console.Clear();
                     game.PrintGameField();
-                    Console.Write($"Congratulations winner player {game.CurrentPlayer}");
+                    Console.Write($"Congratulations winner player {game.GetCurrentPlayer()}");
                     break;
                 }
                 else
