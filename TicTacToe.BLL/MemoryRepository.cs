@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TicTacToe.BLL.Interfaces;
+using TicTacToeApp.BLL.Interfaces;
 
-namespace TicTacToe.BLL
+namespace TicTacToeApp.BLL
 {
     public class MemoryRepository : IRepository
     {

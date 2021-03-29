@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicTacToeApp.BLL
+namespace TicTacToeApp.BLL.Interfaces
 {
-    public enum GameStatus
+    public interface IController
     {
-        Play,
-        GameOver
+        public int WaitUserInput();
     }
 }

@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TicTacToe.BLL.Interfaces;
+using TicTacToeApp.BLL.Interfaces;
 
-namespace TicTacToe.BLL
+namespace TicTacToeApp.BLL
 {
     public class TicTacToe
     {
         private readonly IRepository _repository;
+        private readonly IDisplay _display;
+        private readonly IController _controller;
 
-        public TicTacToe(IRepository repository)
+        public TicTacToe(
+            IRepository repository
+            , IDisplay display
+            , IController controller
+            )
         {
             this._repository = repository;
+            this._display = display;
+            this._controller = controller;
         }
 
         public void InitMemory(
@@ -25,6 +33,55 @@ namespace TicTacToe.BLL
             this._repository.GameStatus = gameStatus;
             this._repository.CurrentPlayer = currentPlayer;
             this._repository.UserSymbol = userSymbol;
+        }
+
+        public void Start()
+        {
+            this.InitMemory(new char[3, 3], GameStatus.Play, 1, 'X');
+            int userInputCellNumber;
+
+            while (this.GetGameStatus() != GameStatus.GameOver)
+            {
+                _display.PrintGameField(_repository.GameField);
+
+                var playerName = this.GetCurrentPlayer() == 1 ? "Gamer X, " : "Gamer O, ";
+                var welcomeInput = "enter field number: " + playerName;
+                this._display.PrintWaitInput(welcomeInput);
+                try
+                {
+                    userInputCellNumber = _controller.WaitUserInput();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                if (!this.IsValidCellNumber(userInputCellNumber))
+                {
+                    continue;
+                }
+
+                var cellPosition = this.FindCellPositionByNumber(userInputCellNumber);
+                if (this.CheckAccessCellByPosition(cellPosition))
+                {
+                    this.SetCellSymbol(cellPosition);
+                }
+                else
+                {
+                    continue;
+                }
+
+                if (this.FindMatches())
+                {
+                    _display.PrintGameField(_repository.GameField);
+                    _display.PrintWinner($"Congratulations winner player {this.GetCurrentPlayer()}");
+                    break;
+                }
+                else
+                {
+                    this.ChangePlayer();
+                }
+            }
         }
 
         public bool FindMatches()
@@ -134,33 +191,6 @@ namespace TicTacToe.BLL
         public void SetGameField(char[,] gameField)
         {
             this._repository.GameField = gameField;
-        }
-
-        public void PrintGameField()
-        {
-            int cellNumber = 1;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (this._repository.GameField[i, j] == 0)
-                    {
-                        Console.Write(cellNumber);
-                    }
-                    else
-                    {
-                        Console.Write(this._repository.GameField[i, j]);
-                    }
-                    Console.Write(" ");
-                    cellNumber++;
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public void PrintWinner()
-        {
-            Console.Write($"Congratulations winner player {this._repository.CurrentPlayer}");
         }
 
         public GameStatus GetGameStatus() => this._repository.GameStatus;
