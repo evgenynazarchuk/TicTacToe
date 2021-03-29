@@ -1,10 +1,10 @@
 ﻿using System;
 using Xunit;
-using TicTacToe.BLL;
+using TicTacToeApp.BLL;
 using System.Collections.Generic;
 using FluentAssertions;
 
-namespace TicTacToe.Tests
+namespace TicTacToeApp.Tests
 {
     public class CheckAccessCellTests
     {
@@ -28,7 +28,7 @@ namespace TicTacToe.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToe.BLL.TicTacToe(memory);
+            var game = new TicTacToeApp.BLL.TicTacToe(memory);
             game.InitMemory(gameField: gameField);
             //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
@@ -46,7 +46,7 @@ namespace TicTacToe.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToe.BLL.TicTacToe(memory);
+            var game = new TicTacToeApp.BLL.TicTacToe(memory);
             game.InitMemory(gameField: gameField);
             //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);

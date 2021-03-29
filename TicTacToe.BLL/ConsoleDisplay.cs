@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TicTacToe.BLL.Interfaces;
+using TicTacToeApp.BLL.Interfaces;
 
-namespace TicTacToe.BLL
+namespace TicTacToeApp.BLL
 {
     public class ConsoleDisplay : IDisplay
     {
@@ -31,6 +31,11 @@ namespace TicTacToe.BLL
                 }
                 Console.WriteLine();
             }
+        }
+
+        public void PrintWaitInput(string welcome)
+        {
+            Console.WriteLine(welcome);
         }
 
         public void PrintWinner(string congratulation)

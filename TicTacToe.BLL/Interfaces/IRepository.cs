@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicTacToe.BLL.Interfaces
+namespace TicTacToeApp.BLL.Interfaces
 {
     public interface IRepository
     {
