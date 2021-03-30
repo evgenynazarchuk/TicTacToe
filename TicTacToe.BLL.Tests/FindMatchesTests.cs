@@ -37,7 +37,9 @@ namespace TicTacToeApp.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToeApp.BLL.TicTacToe(memory);
+            var display = new ConsoleDisplay();
+            var controller = new ConsoleController();
+            var game = new TicTacToeApp.BLL.TicTacToe(memory, display, controller);
             game.InitMemory(gameField: gameField);
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);
@@ -54,7 +56,9 @@ namespace TicTacToeApp.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToeApp.BLL.TicTacToe(memory);
+            var display = new ConsoleDisplay();
+            var controller = new ConsoleController();
+            var game = new TicTacToeApp.BLL.TicTacToe(memory, display, controller);
             game.InitMemory(gameField: gameField);
             game.SetUserSymbol(userSymbol);
             game.SetGameField(gameField);

@@ -9,8 +9,8 @@ namespace TicTacToeApp.ConsoleApp
         {
             var memory = new MemoryRepository();
             var output = new ConsoleDisplay();
-            var controller = new ConsoleController();
-            var game = new TicTacToe(memory, output, controller);
+            var input = new ConsoleController();
+            var game = new TicTacToe(memory, output, input);
             game.Start();
         }
     }

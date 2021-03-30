@@ -11,6 +11,6 @@ namespace TicTacToeApp.BLL.Interfaces
         public void PrintGameField(char[,] gameField);
         public void PrintWinner(string congratulation);
         public void PrintWaitInput(string welcome);
-        public void UpdateDisplay();
+        public void ClearDisplay();
     }
 }

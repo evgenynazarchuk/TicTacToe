@@ -11,7 +11,7 @@ namespace TicTacToeApp.BLL
     {
         public void PrintGameField(char[,] gameField)
         {
-            this.UpdateDisplay();
+            this.ClearDisplay();
 
             int cellNumber = 1;
             for (int i = 0; i < 3; i++)
@@ -43,7 +43,7 @@ namespace TicTacToeApp.BLL
             Console.WriteLine(congratulation);
         }
 
-        public void UpdateDisplay()
+        public void ClearDisplay()
         {
             Console.Clear();
         }

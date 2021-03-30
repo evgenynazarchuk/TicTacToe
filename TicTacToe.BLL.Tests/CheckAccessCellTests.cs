@@ -28,9 +28,10 @@ namespace TicTacToeApp.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToeApp.BLL.TicTacToe(memory);
+            var display = new ConsoleDisplay();
+            var controller = new ConsoleController();
+            var game = new TicTacToeApp.BLL.TicTacToe(memory, display, controller);
             game.InitMemory(gameField: gameField);
-            //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
 
             // Act
@@ -46,9 +47,10 @@ namespace TicTacToeApp.Tests
         {
             // Arange
             var memory = new MemoryRepository();
-            var game = new TicTacToeApp.BLL.TicTacToe(memory);
+            var display = new ConsoleDisplay();
+            var controller = new ConsoleController();
+            var game = new TicTacToeApp.BLL.TicTacToe(memory, display, controller);
             game.InitMemory(gameField: gameField);
-            //game.SetGameField(gameField);
             var cellPosition = game.FindCellPositionByNumber(number);
 
             // Act
